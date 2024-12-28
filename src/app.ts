@@ -6,6 +6,7 @@ import { config } from './config';
 import { connection } from './config/database';
 import { logger } from './logging/Logger';
 import authRoutes from './routes/authRouter';
+import taskRoutes from './routes/taskRouter';
 
 const app = express();
 
@@ -18,6 +19,7 @@ const bootstrap = async () => {
 		await connection();
 
 		app.use('/api/auth', authRoutes);
+		app.use('/api/tasks', taskRoutes);
 
 		app.listen(config.port, () => console.log(`Server is running on port ${config.port}`));
 	} catch (error) {
